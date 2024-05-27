@@ -1,6 +1,6 @@
 module(name = "bazel-ts")
 
-bazel_dep(name = "aspect_rules_swc", version = "2.0.0-rc0")
+bazel_dep(name = "aspect_rules_swc", version = "1.2.3")
 
 bazel_dep(name = "aspect_rules_ts", version = "2.4.1")
 

@@ -1,6 +1,16 @@
-load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
+load("@aspect_rules_swc//swc:defs.bzl", "swc")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_config", "ts_project")
+
+ts_config(
+    name = "tsconfig",
+    src = "tsconfig.json",
+    visibility = ["//visibility:public"],
+)
 
 ts_project(
     name = "project",
     out_dir = "auto",
+    transpiler = swc,
+    declaration = True,
+    tsconfig = ":tsconfig",
 )
