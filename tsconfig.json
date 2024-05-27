@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "strict": true,
+        "rootDir": ".",
+        "rootDirs": ["project", "bazel-bin/project"],
+    },
+
+}

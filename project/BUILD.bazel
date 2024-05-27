@@ -1,10 +1,13 @@
 load("@aspect_rules_swc//swc:defs.bzl", "swc")
-load("@aspect_rules_ts//ts:defs.bzl", "ts_config", "ts_project")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
+load("@bazel_skylib//rules:write_file.bzl", "write_file")
 
-ts_config(
-    name = "tsconfig",
-    src = "tsconfig.json",
-    visibility = ["//visibility:public"],
+write_file(
+    name = "code_generation",
+    out = "generated.ts",
+    content = [
+        "export const uniqueStringName: string = 'asd'",
+    ],
 )
 
 ts_project(
@@ -12,5 +15,10 @@ ts_project(
     out_dir = "auto",
     transpiler = swc,
     declaration = True,
-    tsconfig = ":tsconfig",
+    tsconfig = "//:tsconfig",
+    srcs = [
+        "lib.ts",
+        "other.ts",
+        "generated.ts",
+    ]
 )
